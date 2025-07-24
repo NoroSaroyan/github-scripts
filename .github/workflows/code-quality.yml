@@ -76,7 +76,7 @@ jobs:
               echo "❌ $script doesn't check for GitHub CLI dependency"
               exit 1
             fi
-            if ! grep -q "command -v jq" "$script" && ! grep -q "GitHub CLI" "$script"; then
+            if ! grep -q "command -v jq" "$script"; then
               echo "⚠️  $script might be missing jq dependency check"
             fi
             echo "✓ $script has proper dependency checks"
