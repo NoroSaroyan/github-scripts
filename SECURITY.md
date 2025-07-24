@@ -17,7 +17,7 @@ We take the security of our scripts seriously. If you discover a security vulner
 Please do not report security vulnerabilities through public GitHub issues, discussions, or pull requests.
 
 ### 2. **Send a Private Report**
-create a private security advisory on GitHub.
+Create a private security advisory on GitHub.
 
 Include the following information:
 - Type of issue (e.g., code injection, privilege escalation, etc.)
