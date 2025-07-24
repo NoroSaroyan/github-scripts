@@ -70,6 +70,55 @@ all
 - Confirms each operation with detailed output
 - Graceful error handling for failed operations
 
+### 🌐 Mass Publicize Repositories (`mass-publicize-repos.sh`)
+
+Convert multiple private repositories to public with an intuitive selection interface. Perfect for open-sourcing projects or making repositories publicly accessible.
+
+#### Features
+- Interactive repository selection with support for individual repos, ranges, or all repos
+- Automatic fetching of all private repositories
+- Input validation and error handling
+- Real-time progress feedback with detailed status messages
+
+#### Usage
+
+1. **Download the script:**
+   ```bash
+   curl -O https://raw.githubusercontent.com/NoroSaroyan/github-scripts/main/mass-publicize-repos.sh
+   chmod +x mass-publicize-repos.sh
+   ```
+
+2. **Run the script:**
+   ```bash
+   ./mass-publicize-repos.sh
+   ```
+
+3. **Follow the interactive prompts:**
+   - Enter your GitHub username
+   - Authenticate with GitHub CLI (if not already logged in)
+   - Select repositories using various formats:
+     - Single repos: `1,3,5`
+     - Ranges: `1-5,8,10-12`
+     - All repos: `all`
+
+#### Selection Examples
+```
+# Make repositories 1, 3, and 5 public
+1,3,5
+
+# Make repositories 1 through 5 and repository 8 public
+1-5,8
+
+# Make all private repositories public
+all
+```
+
+#### Important Notes
+- **⚠️ Caution**: Making repositories public exposes all code, commits, and history
+- The script automatically accepts visibility change consequences
+- Failed operations are clearly reported with error messages
+- Only processes private repositories (public repos are filtered out)
+
 ### 🔧 Other Scripts
 
 This repository contains additional scripts for various GitHub management tasks:
