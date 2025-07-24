@@ -1,0 +1,120 @@
+name: Bug Report
+description: Report a bug or issue with one of the scripts
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please fill out the information below to help us resolve the issue quickly.
+
+  - type: dropdown
+    id: script-name
+    attributes:
+      label: Script Name
+      description: Which script is experiencing the issue?
+      options:
+        - mass-privatize-repos.sh
+        - mass-publicize-repos.sh
+        - add-multiple-collaborators.sh
+        - bulk-clone.sh
+        - github-stats-report.sh
+        - mass-archive-inactive-repos.sh
+        - repo-detailed-report.sh
+        - repos-bulk-report.sh
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - macOS
+        - Linux (Ubuntu)
+        - Linux (Other)
+        - Windows (WSL)
+        - Windows (Git Bash)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: shell-version
+    attributes:
+      label: Shell Version
+      description: What shell are you using? (e.g., bash 5.1, zsh 5.8)
+      placeholder: "bash 5.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: "Describe what happened..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Run the script with command '...'
+        2. Enter input '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: "I expected..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: "Instead, what happened was..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: Any error messages or output from the script
+      placeholder: "Paste error messages here..."
+      render: shell
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: "Any additional information..."
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify the following before submitting
+      options:
+        - label: I have the latest version of GitHub CLI installed
+          required: true
+        - label: I have jq installed and accessible
+          required: true
+        - label: I am authenticated with GitHub CLI (`gh auth status` works)
+          required: true
+        - label: I have searched existing issues to avoid duplicates
+          required: true

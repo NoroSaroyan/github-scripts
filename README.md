@@ -144,6 +144,15 @@ This repository contains additional scripts for various GitHub management tasks:
 
 This is an evolving collection of GitHub automation tools. Contributions, suggestions, and improvements are welcome!
 
+**Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting any changes.**
+
+### Quick Start for Contributors
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes following our coding standards
+4. Test thoroughly on different platforms
+5. Submit a pull request with detailed description
+
 ### Adding New Scripts
 When contributing new scripts, please ensure they:
 - Follow the existing code style and structure

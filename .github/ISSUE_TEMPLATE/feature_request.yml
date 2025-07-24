@@ -1,0 +1,95 @@
+name: Feature Request
+description: Suggest a new script or feature for the collection
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request Type
+      description: What type of feature are you requesting?
+      options:
+        - New script
+        - Enhancement to existing script
+        - Documentation improvement
+        - Workflow/CI improvement
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: script-name
+    attributes:
+      label: Script Name (if applicable)
+      description: If this is about an existing script, which one?
+      placeholder: "e.g., mass-privatize-repos.sh"
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of what you want to happen
+      placeholder: "I would like..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Describe the specific use case or problem this feature would solve
+      placeholder: "This would help when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you think this feature should work?
+      placeholder: "The script could..."
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: "I have tried..."
+
+  - type: textarea
+    id: example-usage
+    attributes:
+      label: Example Usage
+      description: Provide an example of how this feature would be used
+      placeholder: |
+        ```bash
+        ./new-script.sh
+        # Expected prompts and outputs
+        ```
+      render: shell
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my workflow
+        - Critical - Blocking my work
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to help implement this feature?
+      options:
+        - label: I would be willing to implement this feature myself
+        - label: I would be willing to help test this feature
+        - label: I would be willing to help with documentation
