@@ -1,0 +1,84 @@
+name: Code Quality Check
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  shellcheck:
+    name: Shell Script Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run ShellCheck
+      uses: ludeeus/action-shellcheck@master
+      with:
+        scandir: '.'
+        format: gcc
+        severity: warning
+        
+  script-validation:
+    name: Script Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+        
+    - name: Install GitHub CLI
+      run: |
+        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+        sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+        sudo apt update
+        sudo apt install gh
+        
+    - name: Validate script syntax
+      run: |
+        echo "Checking shell script syntax..."
+        for script in *.sh; do
+          if [ -f "$script" ]; then
+            echo "Checking $script..."
+            bash -n "$script" || exit 1
+            echo "✓ $script syntax is valid"
+          fi
+        done
+        
+    - name: Check script permissions
+      run: |
+        echo "Checking script permissions..."
+        for script in *.sh; do
+          if [ -f "$script" ] && [ ! -x "$script" ]; then
+            echo "❌ $script is not executable"
+            exit 1
+          elif [ -f "$script" ]; then
+            echo "✓ $script has correct permissions"
+          fi
+        done
+        
+    - name: Validate dependencies check
+      run: |
+        echo "Validating dependency checks in scripts..."
+        for script in *.sh; do
+          if [ -f "$script" ]; then
+            echo "Checking $script for dependency validation..."
+            if ! grep -q "command -v gh" "$script"; then
+              echo "❌ $script doesn't check for GitHub CLI dependency"
+              exit 1
+            fi
+            if ! grep -q "command -v jq" "$script" && ! grep -q "GitHub CLI" "$script"; then
+              echo "⚠️  $script might be missing jq dependency check"
+            fi
+            echo "✓ $script has proper dependency checks"
+          fi
+        done
